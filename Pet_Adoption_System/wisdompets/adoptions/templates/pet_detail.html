@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>
+      <div class="shadow lg" style="background-color: rgb(193, 230, 232);margin-left:20%;margin-right:20%;padding:2%;">          <h2 style="text-align:center;color:black;margin-bottom:2%;padding:1px;background-color: rgb(193, 230, 232);"><b>{{ pet.name|capfirst }}</b></h2>
+                {% if pet.pet_image %}
+                    <img src='/media/{{pet.pet_image}}' style="display: block; margin: 0 auto;">
+                {% endif %}
+                <p style="color:black;text-align:center;"><b>{{ pet.species }}</b></p>
+                {% if pet.breed %}
+                    <p style="color:black;text-align:center;"><b>Breed:</b>{{ pet.breed }}</p>
+                {% endif %}
+                {% if pet.age %}
+                    <p style="color:black;text-align:center;"><b>Age:</b>{{ pet.age }}</p>
+                {% endif %}
+                {% if pet.sex %}
+                    <p style="color:black;text-align:center;"><b>Sex: </b>{{ pet.sex }}</p>
+                {% endif %}
+                {% if pet.vaccinations.all %}
+                    <p style="color:black;text-align:center;"><b>Vaccinations:</b>
+                        {% for vaccination in pet.vaccinations.all %}
+                            <small style="color:black;text-align:center;">{{ vaccination.name }}</small><br>
+                        {% endfor %}
+                    </p>
+                {% endif %}
+                <p style="color:black;text-align:center;"><b>Submitted by: </b>{{ pet.submitter }}</p>
+                <p style="color:black;text-align:center;"><b>Submitted on: </b>{{ pet.submission_date|date:"M d Y" }}</p>
+                <p style="color:black;text-align:center;">{{ pet.description }}</p>
+                <div class= "text-center">
+                    <a href="/delete_pet/{{pet.id}}" class="btn btn-danger">Delete Pet</a>
+                     <a href="/update_pet/{{pet.id}}" class="btn btn-primary">Update Pet</a>
+                </div>
+            </div>
+{% endblock %}
+

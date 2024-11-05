@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-2">
+        <form style="margin-bottom:3vh;" class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3 style="margin-top:1%;margin-bottom:4%;text-align:center;padding:3%;background-color:rgb(59, 195, 204);">Welcome! Sign Up</h3>
+            {% if messages %}
+            <div class="alert alert-primary" role="alert">
+                {% for message in messages %}
+                {{message}}
+                {% endfor %}
+            </div>
+            {% endif %}
+            <div class="mb-2">
+                <label for="exampleInputEmail1" class="form-label">First Name</label>
+                <input  required name="first_name" type="text" class="form-control">
+            </div>
+            <div class="mb-2">
+                <label for="exampleInputEmail1" class="form-label">Last Name</label>
+                <input required name="last_name" type="text" class="form-control">
+            </div>
+            <div class="mb-2">
+                <label for="exampleInputEmail1" class="form-label">Username</label>
+                <input  required name="username" type="text" class="form-control">
+            </div>
+            <div class="mb-2">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input required name="password" type="password" class="form-control">
+            </div>
+            <p><small>Already have an account! <a href='/login/'>Login here</a></small></p>
+            <button type="submit" class="btn btn-info">Register</button>
+        </form>
+    </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h3 class="shadow-lg" style="text-align:center;margin-bottom:5%;padding:2%;background-color:rgb(59, 195, 204);;"> Update Pet Details </h3>
+    <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">Pet Name</label>
+            <input type="text" name="name" value="{{pet.name}}" equired class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="submitter" class="form-label">Submitter</label>
+            <input type="text" name="submitter" value="{{pet.submitter}}" class="form-control" >
+        </div>
+        <div class="mb-3">
+            <label for="species" class="form-label">Species</label>
+            <input type="text" name="species" value="{{pet.species}}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="breed" class="form-label">Breed</label>
+            <input type="text" name="breed" value="{{pet.breed}}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input type="number" name="age" value="{{pet.age}}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="sex" class="form-label">Sex</label>
+            <input type="text" name="sex" value="{{pet.sex}}" class="form-control" placeholder="Enter 'M' for Male and 'F' for Female">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Pet Description</label>
+            <textarea name="description" class="form-control">{{pet.description}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="pet_image" class="form-label">Pet Image</label>
+            <input type="file" name="pet_image" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary shadow-lg">Update Pet</button>
+    </form>
+</div>
+{% endblock%}

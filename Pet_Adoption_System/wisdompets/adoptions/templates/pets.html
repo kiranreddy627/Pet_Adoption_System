@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mx-auto col-6" style="margin-top:2%;margin-bottom:2%;">
+                <form class="p-3 border rounded bg-light">
+                    <div class="row">
+                        <div class="col">
+                            <input style="padding:3%;" name="search_pet" placeholder="Search Pet" value="{{pets.name}}" type="text" class="form-control">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" style="background-color:rgb(197, 230, 245);" class="btn btn-info">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div>
+            {% for pet in pets %}
+                <div class="petname" style="margin-bottom:4%;">
+                    <a href="{% url 'pet_detail' pet.id %}" style="text-decoration:None;">
+                    <h3 style="text-align:center;color:black;margin:1%;padding:1%;margin-left:20%;margin-right:20%;background-color: rgb(193, 230, 232);"><b>{{ pet.name|capfirst }}</b></h3>
+                    </a>
+                    <p style="text-align: center;"><b style="color:black;">{{ pet.species }}</b></p>
+                    {% if pet.breed %}
+                        <p style="text-align:center;color:black;"><b><u>Breed</u> : {{ pet.breed }}</b></p>
+                    {% endif %}
+                    {% if pet.pet_image%}
+                        <img src='/media/{{pet.pet_image}}' style="display: block; margin: 0 auto;">
+                    {% endif %}
+                    <b><p class="hidden" style="text-align:center;color:black;">{{ pet.description }}</p></b>
+                </div>
+            {% endfor %}
+        </div>
+{% endblock %}
